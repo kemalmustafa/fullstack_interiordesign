@@ -1,74 +1,95 @@
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white">
-      <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
+    <main style={{ backgroundColor: '#F7F3EE', minHeight: '100vh', paddingBottom: '120px' }}>
+      <div className="max-w-6xl mx-auto px-8">
+
+        {/* Başlık */}
+        <div className="pt-40 pb-16" style={{ borderBottom: '1px solid #E2D9CE', marginBottom: '80px' }}>
+          <p style={{ fontSize: '9px', letterSpacing: '0.55em', textTransform: 'uppercase', color: '#B5A08A', marginBottom: '16px', fontWeight: 300 }}>
+            Profil
+          </p>
+          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(48px, 6vw, 80px)', fontWeight: 300, color: '#2C2218', lineHeight: 1 }}>
+            Über mich
+          </h1>
+        </div>
+
+        {/* İçerik */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-          
-          {/* Sol Kısım: Profil */}
-          <div className="md:col-span-4 lg:sticky lg:top-32">
-            <h2 className="text-gray-400 text-[10px] tracking-[0.4em] uppercase mb-4">Profil</h2>
-            <h1 className="text-4xl font-extralight tracking-tight text-gray-900 leading-tight">
-              Ecem Kemal <br />
-              <span className="text-gray-400 italic">Innenarchitektin</span>
-            </h1>
-            
-            <div className="mt-12 space-y-3 text-[10px] tracking-[0.2em] uppercase text-gray-500 font-medium">
-              <p>Wohnhaft in der Türkei</p>
-              <p>27 Jahre alt</p>
-              <p>Absolventin der ESTU</p>
+
+          {/* Sol: Profil bilgisi */}
+          <div className="md:col-span-4" style={{ position: 'sticky', top: '120px' }}>
+            {/* Profil kutusu */}
+            <div style={{ backgroundColor: '#F0EAE1', border: '1px solid #E2D9CE', borderRadius: '12px', padding: '32px', marginBottom: '32px' }}>
+              <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '28px', fontWeight: 300, color: '#2C2218', lineHeight: 1.2, marginBottom: '8px' }}>
+                Ecem Kemal
+              </h2>
+              <p style={{ fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#8B7055', fontStyle: 'italic', marginBottom: '28px' }}>
+                Innenarchitektin
+              </p>
+              <div style={{ borderTop: '1px solid #E2D9CE', paddingTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {[
+                  { etiket: 'Standort', deger: 'Türkei' },
+                  { etiket: 'Alter', deger: '27 Jahre' },
+                  { etiket: 'Abschluss', deger: 'ESTU' },
+                ].map((item) => (
+                  <div key={item.etiket} className="flex justify-between items-center">
+                    <span style={{ fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#B5A08A', fontWeight: 200 }}>
+                      {item.etiket}
+                    </span>
+                    <span style={{ fontSize: '12px', color: '#4A3728', fontWeight: 300 }}>
+                      {item.deger}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* İletişim */}
+            <a href="/contact" style={{ display: 'block', textAlign: 'center', padding: '14px', border: '1px solid #C4B09A', borderRadius: '4px', fontSize: '10px', letterSpacing: '0.4em', textTransform: 'uppercase', color: '#8B7055', textDecoration: 'none', fontWeight: 300 }}
+              className="hover:bg-[#2C2218] hover:text-[#F7F3EE] hover:border-[#2C2218] transition-all duration-300">
+              Kontakt aufnehmen
+            </a>
           </div>
 
-          {/* Sağ Kısım: Hikaye ve Yetenekler */}
+          {/* Sağ: Hikaye */}
           <div className="md:col-span-8">
-            <div className="max-w-none">
-              <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-800 mb-8 italic">
-                "Design ist nicht nur das, was man sieht, sondern das, was man fühlt."
+            {/* Alıntı */}
+            <blockquote style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontWeight: 300, fontStyle: 'italic', color: '#8B7055', lineHeight: 1.5, borderLeft: '2px solid #C4B09A', paddingLeft: '28px', marginBottom: '48px' }}>
+              "Design ist nicht nur das, was man sieht, sondern das, was man fühlt."
+            </blockquote>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '64px' }}>
+              <p style={{ fontSize: '15px', fontWeight: 200, color: '#4A3728', lineHeight: 1.9 }}>
+                Ich bin fest davon überzeugt, dass Innendesign weit mehr ist als die bloße Gestaltung von Räumen. Seit meinem Abschluss an der <strong style={{ fontWeight: 400 }}>Technischen Universität Eskişehir</strong> verleihe ich Räumen eine einzigartige Identität.
               </p>
-              
-              <div className="space-y-6 text-gray-600 font-light leading-relaxed text-lg">
-                <p>
-                  Ich bin fest davon überzeugt, dass Innendesign weit mehr ist als die bloße Gestaltung von Räumen. 
-                  Seit meinem Abschluss an der <strong>Technischen Universität Eskişehir</strong> verleihe ich Räumen eine einzigartige Identität.
-                </p>
-                <p>
-                  Dieses Portfolio dient als digitale Präsentation meiner Projekte, in denen ich technische Präzision 
-                  mit kreativer Vision für gewerbliche und private Kunden verbinde.
-                </p>
+              <p style={{ fontSize: '15px', fontWeight: 200, color: '#4A3728', lineHeight: 1.9 }}>
+                Dieses Portfolio dient als digitale Präsentation meiner Projekte, in denen ich technische Präzision mit kreativer Vision für gewerbliche und private Kunden verbinde.
+              </p>
+            </div>
+
+            {/* Uzmanlık */}
+            <div style={{ borderTop: '1px solid #E2D9CE', paddingTop: '48px' }}>
+              <p style={{ fontSize: '9px', letterSpacing: '0.5em', textTransform: 'uppercase', color: '#B5A08A', marginBottom: '32px', fontWeight: 300 }}>
+                Technische Expertise
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { baslik: 'Visualisierung', deger: '3ds Max + Corona' },
+                  { baslik: 'Modellierung', deger: 'SketchUp' },
+                  { baslik: 'Post-Produktion', deger: 'Adobe Photoshop' },
+                  { baslik: 'Philosophie', deger: 'Modern & Funktional' },
+                ].map((kart) => (
+                  <div key={kart.baslik} style={{ backgroundColor: '#F0EAE1', border: '1px solid #E2D9CE', borderRadius: '6px', padding: '20px 24px' }}
+                    className="hover:border-[#C4B09A] transition-colors duration-300">
+                    <p style={{ fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#B5A08A', marginBottom: '10px', fontWeight: 300 }}>
+                      {kart.baslik}
+                    </p>
+                    <p style={{ fontSize: '14px', fontWeight: 300, color: '#2C2218' }}>
+                      {kart.deger}
+                    </p>
+                  </div>
+                ))}
               </div>
-
-              {/* Technische Expertise */}
-              <div className="mt-20 pt-12 border-t border-gray-200">
-  <h3 className="text-[11px] tracking-[0.3em] uppercase font-bold text-black mb-10">
-    Technische Expertise
-  </h3>
-  
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {/* Kart 1: Visualisierung */}
-    <div className="p-6 bg-[#f9f9f9] border border-gray-100 rounded-sm hover:border-black transition-colors duration-300">
-      <span className="block text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-semibold">Visualisierung</span>
-      <p className="text-base font-medium tracking-wide text-black uppercase">3ds Max + Corona</p>
-    </div>
-
-    {/* Kart 2: Modellierung */}
-    <div className="p-6 bg-[#f9f9f9] border border-gray-100 rounded-sm hover:border-black transition-colors duration-300">
-      <span className="block text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-semibold">Modellierung</span>
-      <p className="text-base font-medium tracking-wide text-black uppercase">SketchUp</p>
-    </div>
-
-    {/* Kart 3: Post-Produktion */}
-    <div className="p-6 bg-[#f9f9f9] border border-gray-100 rounded-sm hover:border-black transition-colors duration-300">
-      <span className="block text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-semibold">Post-Produktion</span>
-      <p className="text-base font-medium tracking-wide text-black uppercase">Adobe Photoshop</p>
-    </div>
-
-    {/* Kart 4: Philosophie */}
-    <div className="p-6 bg-[#f9f9f9] border border-gray-100 rounded-sm hover:border-black transition-colors duration-300">
-      <span className="block text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-semibold">Philosophie</span>
-      <p className="text-base font-medium tracking-wide text-black uppercase">Modern & FunktIonal</p>
-    </div>
-  </div>
-</div>
             </div>
           </div>
 

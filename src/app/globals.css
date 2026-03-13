@@ -1,26 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #F7F3EE;
+  --cream-dark: #F0EAE1;
+  --bej: #E8DDD1;
+  --bej-dark: #D9CEC0;
+  --toprak: #C4B09A;
+  --toprak-dark: #8B7055;
+  --kahve: #2C2218;
+  --metin: #4A3728;
+  --metin-acik: #9C8572;
+  --metin-cok-acik: #B5A08A;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--metin);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif {
+  font-family: 'Cormorant Garamond', serif;
 }

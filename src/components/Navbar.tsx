@@ -2,37 +2,32 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo / İsim Alanı */}
-        <Link href="/" className="group">
-          {/* text-black ekledik ki normalde simsiyah ve net dursun */}
-          <h1 className="text-xl font-medium tracking-[0.3em] uppercase text-black transition-colors duration-300 group-hover:text-gray-400">
+    <nav className="fixed top-0 w-full z-50" style={{ backgroundColor: 'rgba(247, 243, 238, 0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #E2D9CE' }}>
+      <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
+
+        {/* Logo */}
+        <Link href="/" className="flex items-baseline gap-3">
+          <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '20px', fontWeight: 300, letterSpacing: '0.35em', color: '#2C2218' }}>
             ECEM KEMAL
-            <span className="hidden md:inline-block ml-3 text-xs font-extralight text-gray-400 tracking-widest group-hover:text-gray-300">
-              INNENARCHITEKTIN
-            </span>
-          </h1>
+          </span>
+          <span className="hidden md:inline" style={{ fontSize: '9px', fontWeight: 200, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#B5A08A' }}>
+            Innenarchitektin
+          </span>
         </Link>
 
-        {/* Menü Linkleri */}
-        <div className="flex space-x-10 text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium text-gray-500">
-          <Link href="/projects" className="hover:text-black transition-colors border-b border-transparent hover:border-black pb-1">
+        {/* Links */}
+        <div className="flex items-center gap-10" style={{ fontSize: '10px', fontWeight: 300, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7A6B5A' }}>
+          <Link href="/projects" className="hover:text-[#2C2218] transition-colors duration-200">
             Projekte
           </Link>
-        <div className="flex space-x-10 text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium text-gray-500">
-            <Link href="/renders" className="hover:text-black transition-colors border-b border-transparent hover:border-black pb-1">
-            VISUALISIERUNGEN
-            </Link>
-        {/* Diğer linkler... */}
-        </div>
-          <Link href="/about" className="hover:text-black transition-colors border-b border-transparent hover:border-black pb-1">
-            ÜBER MICH
+          <Link href="/about" className="hover:text-[#2C2218] transition-colors duration-200">
+            Über mich
           </Link>
-          <Link href="/contact" className="hover:text-black transition-colors border-b border-transparent hover:border-black pb-1">
+          <Link href="/contact" style={{ padding: '8px 20px', border: '1px solid #C4B09A', borderRadius: '2px', color: '#7A6B5A' }} className="hover:text-[#2C2218] hover:border-[#2C2218] transition-all duration-200">
             Kontakt
           </Link>
         </div>
+
       </div>
     </nav>
   );

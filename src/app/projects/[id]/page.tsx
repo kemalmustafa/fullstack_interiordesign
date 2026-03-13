@@ -18,98 +18,123 @@ export default function ProjectDetailPage() {
         .select('*')
         .eq('id', params.id)
         .single();
-
       if (!error) setProject(data);
       setLoading(false);
     }
     if (params.id) fetchProject();
   }, [params.id]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center uppercase tracking-[0.4em] text-[10px] text-gray-400">Wird geladen...</div>;
-  if (!project) return <div className="min-h-screen flex items-center justify-center uppercase tracking-[0.4em] text-[10px] text-gray-400">Projekt nicht gefunden.</div>;
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F7F3EE' }}>
+      <p style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#B5A08A', textTransform: 'uppercase' }}>Wird geladen...</p>
+    </div>
+  );
+
+  if (!project) return (
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F7F3EE' }}>
+      <p style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#B5A08A', textTransform: 'uppercase' }}>Projekt nicht gefunden.</p>
+    </div>
+  );
 
   return (
-    <main className="min-h-screen bg-white pb-40 pt-20">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 pt-20">
-        
-        {/* --- ÜST BİLGİ ALANI --- */}
-        <header className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-24 items-start">
-          <div className="md:col-span-8">
-            <h1 className="text-5xl md:text-8xl font-light tracking-tight text-black uppercase leading-tight">
-              {project.title}
-            </h1>
-            <div className="flex gap-8 mt-10 text-[10px] tracking-[0.5em] uppercase text-gray-400 font-medium">
-              <span>{project.location}</span>
-              <span className="text-gray-200">|</span>
-              <span>{project.year}</span>
+    <main style={{ backgroundColor: '#F7F3EE', minHeight: '100vh', paddingBottom: '120px' }}>
+
+      {/* HERO */}
+      <div className="relative overflow-hidden" style={{ height: '70vh' }}>
+        <img
+          src={project.images?.[0] || project.thumbnail_url}
+          alt={project.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(44,34,24,0.75) 0%, transparent 50%)' }} />
+
+        {/* Hero metin */}
+        <div className="absolute bottom-0 left-0 right-0 max-w-7xl mx-auto px-8 pb-16">
+          <p style={{ fontSize: '9px', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(247,243,238,0.6)', marginBottom: '12px', fontWeight: 200 }}>
+            {project.location} · {project.year}
+          </p>
+          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(40px, 6vw, 80px)', fontWeight: 300, color: '#F7F3EE', lineHeight: 1.05 }}>
+            {project.title}
+          </h1>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-8">
+
+        {/* Açıklama */}
+        {project.description && (
+          <div className="py-20 grid grid-cols-1 md:grid-cols-12 gap-12" style={{ borderBottom: '1px solid #E2D9CE' }}>
+            <div className="md:col-span-3">
+              <p style={{ fontSize: '9px', letterSpacing: '0.4em', textTransform: 'uppercase', color: '#B5A08A', fontWeight: 300 }}>
+                Beschreibung
+              </p>
             </div>
-          </div>
-          
-          <div className="md:col-span-4 mt-6 md:mt-0 pt-2">
-            <div className="border-l border-gray-100 pl-8 space-y-4">
-              <span className="text-[9px] tracking-[0.3em] uppercase text-gray-300 block font-medium">Beschreibung</span>
-              <p className="text-[13px] md:text-sm text-gray-600 leading-relaxed font-light italic">
+            <div className="md:col-span-7">
+              <p style={{ fontSize: '15px', fontWeight: 200, color: '#4A3728', lineHeight: 1.9, fontStyle: 'italic', fontFamily: 'Cormorant Garamond, serif' }}>
                 {project.description}
               </p>
             </div>
           </div>
-        </header>
-
-        {/* --- 3'LÜ IZGARA (GALLERY GRID) --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {project.images?.map((imgUrl: string, index: number) => (
-            <div 
-              key={index} 
-              onClick={() => setSelectedImage(imgUrl)}
-              className="relative aspect-square overflow-hidden rounded-[2rem] group cursor-zoom-in bg-gray-50"
-            >
-              <div className="absolute inset-0 border border-black/5 z-10 pointer-events-none rounded-[2rem] scale-[0.96]"></div>
-              <img 
-                src={imgUrl} 
-                alt={`${project.title} ${index}`} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              {/* Hover Efekti */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 z-0"></div>
-            </div>
-          ))}
-        </div>
-
-        {/* --- TAM EKRAN MODAL (LIGHTBOX) --- */}
-        {selectedImage && (
-          <div 
-            className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-10 cursor-zoom-out"
-            onClick={() => setSelectedImage(null)}
-          >
-            <div className="relative w-full h-full flex items-center justify-center">
-              <img 
-                src={selectedImage} 
-                className="max-w-full max-h-full object-contain rounded-[1rem] shadow-2xl"
-                alt="Enlarged view"
-              />
-              <button 
-                className="absolute top-0 right-0 p-4 text-black text-xs tracking-widest uppercase"
-                onClick={() => setSelectedImage(null)}
-              >
-                Schließen [x]
-              </button>
-            </div>
-          </div>
         )}
 
-        {/* --- ALT NAVİGASYON --- */}
-        <div className="mt-40 pt-20 border-t border-gray-50 flex justify-between items-center">
-          <Link 
-            href="/projects" 
-            className="text-[10px] tracking-[0.4em] uppercase text-gray-400 hover:text-black transition-colors"
-          >
+        {/* Galeri */}
+        <div className="pt-16">
+          <p style={{ fontSize: '9px', letterSpacing: '0.5em', textTransform: 'uppercase', color: '#B5A08A', marginBottom: '40px', fontWeight: 300 }}>
+            Galerie — {project.images?.length || 0} Bilder
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            {project.images?.map((imgUrl: string, index: number) => (
+              <div
+                key={index}
+                onClick={() => setSelectedImage(imgUrl)}
+                className="group cursor-zoom-in overflow-hidden"
+                style={{ aspectRatio: '4/3', backgroundColor: '#E8DDD1', borderRadius: '12px' }}
+              >
+                <img
+                  src={imgUrl}
+                  alt={`${project.title} ${index + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Alt navigasyon */}
+        <div className="mt-24 pt-10 flex justify-between items-center" style={{ borderTop: '1px solid #E2D9CE' }}>
+          <Link href="/projects" style={{ fontSize: '10px', letterSpacing: '0.35em', textTransform: 'uppercase', color: '#9C8572', textDecoration: 'none', fontWeight: 300 }}
+            className="hover:text-[#2C2218] transition-colors duration-200">
             ← Alle Projekte
           </Link>
-          <span className="text-[10px] tracking-[0.4em] uppercase text-gray-200">
-            Ecem Kemal Interior Design
+          <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '13px', fontStyle: 'italic', color: '#C4B09A' }}>
+            Ecem Kemal
           </span>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12 cursor-zoom-out"
+          style={{ backgroundColor: 'rgba(44, 34, 24, 0.95)', backdropFilter: 'blur(8px)' }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            className="max-w-full max-h-full object-contain"
+            style={{ borderRadius: '8px' }}
+            alt="Enlarged view"
+          />
+          <button
+            className="absolute top-6 right-8"
+            style={{ fontSize: '10px', letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(247,243,238,0.5)', background: 'none', border: 'none', cursor: 'pointer' }}
+            onClick={() => setSelectedImage(null)}
+          >
+            Schließen ×
+          </button>
+        </div>
+      )}
     </main>
   );
-}   
+}

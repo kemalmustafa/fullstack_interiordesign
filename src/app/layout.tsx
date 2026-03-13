@@ -1,9 +1,11 @@
 import "./globals.css";
-
-// Dosya yollarını (import path) senin projedeki klasör yapına göre ayarlaman gerekebilir.
-// Ben şimdilik bileşenlerin 'src/components' klasöründe olduğunu varsayarak yazıyorum.
-import Navbar from "@/components/Navbar"; 
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+export const metadata = {
+  title: 'Ecem Kemal — Innenarchitektin',
+  description: 'Portfolio von Ecem Kemal, Innenarchitektin aus der Türkei.',
+};
 
 export default function RootLayout({
   children,
@@ -12,17 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-      <body className="antialiased font-light bg-white text-black flex flex-col min-h-screen">
-        
-        {/* Senin Navbar bileşenin */}
+      <body style={{ backgroundColor: '#F7F3EE', margin: 0 }}>
         <Navbar />
-
-        {/* Ana İçerik - Navbar altında kalmaması için 'pt-28' üst boşluğu eklendi */}
-        <main className="flex-grow pt-28 bg-white">{children}</main>
-
-        {/* Senin Footer bileşenin */}
+        <main style={{ paddingTop: '80px' }}>
+          {children}
+        </main>
         <Footer />
-        
       </body>
     </html>
   );
