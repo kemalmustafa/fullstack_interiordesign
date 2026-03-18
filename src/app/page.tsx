@@ -9,7 +9,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
 
           {/* Sol: Görsel */}
-          <div className="relative overflow-hidden" style={{ minHeight: '60vh', width: '85%' }}>
+          <div className="relative overflow-hidden w-[85%] md:w-full" style={{ minHeight: '60vh' }}>
             <img
               src="/anasayfa.jpeg"
               alt="Ecem Kemal Interior Design"
