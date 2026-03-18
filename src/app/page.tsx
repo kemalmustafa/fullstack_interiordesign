@@ -17,6 +17,7 @@ export default function HomePage() {
               style={{ minHeight: '60vh' }}
             />
             <div className="absolute inset-0 hidden md:block" style={{ background: 'linear-gradient(to right, transparent 60%, #F7F3EE)' }} />
+            <div className="absolute inset-0 md:hidden" style={{ background: 'linear-gradient(to bottom, transparent 50%, #F7F3EE)' }} />
           </div>
 
           {/* Sağ: Metin */}
