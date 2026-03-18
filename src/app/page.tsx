@@ -1,22 +1,20 @@
-import PageTransition from '@/components/PageTransition';
-
 export default function HomePage() {
   return (
-    <PageTransition>
       <div style={{ backgroundColor: '#F7F3EE' }} className="w-full">
 
         {/* HERO */}
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
 
           {/* Sol: Görsel */}
-          <div className="relative overflow-hidden w-[85%] md:w-full" style={{ minHeight: '60vh' }}>
+          <div className="relative overflow-hidden" style={{ minHeight: '60vh' }}>
             <img
               src="/anasayfa.jpeg"
               alt="Ecem Kemal Interior Design"
               className="w-full h-full object-cover"
               style={{ minHeight: '60vh' }}
             />
-            <div className="absolute inset-0 md:hidden" style={{ background: 'linear-gradient(to right, transparent 60%, #F7F3EE)' }} />
+            <div className="absolute inset-0 hidden md:block" style={{ background: 'linear-gradient(to right, transparent 60%, #F7F3EE)' }} />
+            <div className="absolute inset-0 md:hidden" style={{ background: 'linear-gradient(to right, transparent 55%, #F7F3EE 85%)' }} />
           </div>
 
           {/* Sağ: Metin */}
@@ -110,6 +108,5 @@ export default function HomePage() {
         </div>
 
       </div>
-    </PageTransition>
   );
 }
